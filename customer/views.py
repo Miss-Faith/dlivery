@@ -18,3 +18,4 @@ class Index(View):
     # pass into content
 
     #render the template
+# Create your views here.
