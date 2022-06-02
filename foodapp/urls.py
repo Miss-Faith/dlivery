@@ -21,9 +21,11 @@ from customer.views import Index, About, Order, OrderConfirmation, OrderPayConfi
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('accounts/', include('allauth.urls')),
+    path('restaurant/', include('restaurant.urls')),
     path('', Index.as_view(), name='index'),
     path('about/', About.as_view(), name='about'),
     path('order/', Order.as_view(), name='order'),
     path('order-confirmation/<int:pk>', OrderConfirmation.as_view(),name='order-confirmation'),
     path('payment-confirmation/', OrderPayConfirmation.as_view(),name='payment-confirmation'),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
