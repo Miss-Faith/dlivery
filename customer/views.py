@@ -13,12 +13,10 @@ class About(View):
 class Order(View):
     def get(self, request, *args, **kwargs):
         # get every item from each category
-        food = MenuItem.objects.filter(
-            category__name__contains='Appetizer')
-        drinks = MenuItem.objects.filter(category__name__contains='Entre')
-        groceries = MenuItem.objects.filter(category__name__contains='Dessert')
+        food = MenuItem.objects.filter(category__name__contains='Food')
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
-
+        groceries = MenuItem.objects.filter(category__name__contains='Grocery')
+       
         # pass into context
         context = {
             'food': food,
