@@ -10,11 +10,3 @@ class About(View):
   def get(self, request, *args, **kwargs):
     return render(request,'customer/about.html')
 
-class Index(View):
-  def get(self, request, *args, **kwargs):
-    pass
-    # get every item from each category
-
-    # pass into content
-
-    #render the template
