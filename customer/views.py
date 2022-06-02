@@ -1,4 +1,4 @@
-import jason
+import json
 from django.shortcuts import render, redirect
 from django.views import View
 from django.core.mail import send_mail
