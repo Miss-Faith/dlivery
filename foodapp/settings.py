@@ -36,20 +36,22 @@ AUTHENTICATION_BACKENDS = [
 ]
 
 INSTALLED_APPS = [
+    'food',
+    'customer',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.sites'
     'django.contrib.staticfiles',
 
-    'food',
-    'customer',
-
     'crispy_forms',
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
 ]
 
 SITE_ID = 1
