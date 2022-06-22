@@ -9,6 +9,7 @@ pillow = "*"
 django-bootstrap4 = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
+django-registration = "*"
 
 [dev-packages]
 
