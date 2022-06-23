@@ -16,6 +16,19 @@
       <li class="nav-item">
         <a class="nav-link" href="{% url 'order' %}">Place an Order!</a>
       </li>
+      {% if user.is_authenticated %}    
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'logout' %}">
+          <span style="font-size: 15px">Log Out</span>
+        </a>  
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{% url 'index' %}">
+          <span style="font-size: 15px">Log In</span>
+        </a>  
+      </li>
+      {% endif %}
     </ul>
   </div>
 </nav>
