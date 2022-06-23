@@ -71,11 +71,14 @@
 
   <div class="col-lg-4 mx-auto">
     <div>
-      <form action="" method="post">
-        {% csrf_token%}
-        {{ form|crispy}}
-        <button type="submit" class="btn btn-info btn-sm">Log In</button>
-      </form>
+      <form action="" method="post" enctype="multipart/form-data" role="form">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button style="margin-left: 45%;" type="submit" name="action" class="btn btn-sm btn-success">Log In</button>
+        <p>Don't have an account? </p>
+        </form>
+        <button class="text-center btn btn-outline-success btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sign Up</button>
+     
     </div>
 
     <div class="">
@@ -89,4 +92,29 @@
     </div>
   </div>
 </div>
+
+<div class="container-fluid" style="margin-top:3%;">
+    <div class="modal fade bd-example-modal-xl" id="ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content bg-dark text-white">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Log in</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body bg-dark text-white">
+            <form action="" method="post" enctype="multipart/form-data" role="form">
+              {% csrf_token %}
+              {{ Signupform|crispy }}
+              <button style="margin-left: 45%;" type="submit" name="action" class="btn btn-sm btn-success">Log In</button>
+            </form>
+            <br>
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 {% endblock %}

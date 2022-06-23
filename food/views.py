@@ -5,7 +5,7 @@ from django.utils.timezone import datetime
 from customer.models import OrderModel
 
 
-class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
+class Dashboard(View):
     def get(self, request, *args, **kwargs):
         # get the current date
         today = datetime.today()
@@ -34,7 +34,7 @@ class Dashboard(LoginRequiredMixin, UserPassesTestMixin, View):
         return self.request.user.groups.filter(name='Staff').exists()
 
 
-class OrderDetails(LoginRequiredMixin, UserPassesTestMixin, View):
+class OrderDetails(View):
     def get(self, request, pk, *args, **kwargs):
         order = OrderModel.objects.get(pk=pk)
         context = {

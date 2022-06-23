@@ -10,6 +10,8 @@ django-bootstrap4 = "*"
 django-crispy-forms = "*"
 django-allauth = "*"
 django-registration = "*"
+django-phonenumber-field = "*"
+django-phonenumbers = "*"
 
 [dev-packages]
 

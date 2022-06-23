@@ -5,11 +5,22 @@ from django.views import View
 from django.db.models import Q
 from django.core.mail import send_mail
 from .models import *
+from .forms import *
 
 # Create your views here.
 class Index(View):
   def get(self, request, *args, **kwargs):
-    return render(request,'customer/index.html')
+    if request.method == 'POST':
+        Signupform = SignupForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            email = form.cleaned_data.get('email')
+            password = form.cleaned_data.get('password')
+            User.objects.create_user(username=username, email=email, password=password)
+            return redirect('login')
+    else:
+        Signupform = SignupForm()
+    return render(request, 'customer/index.html', {'Signupform': Signupform})
 
 
 class About(View):
