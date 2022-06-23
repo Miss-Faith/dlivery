@@ -173,3 +173,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_ADAPTER = 'food.account_adapter.NoNewUsersAccountAdapter'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+
+LOGIN_REDIRECT_URL = 'menu'
+LOGOUT_REDIRECT_URL = 'index'
+LOGIN_URL = 'index'

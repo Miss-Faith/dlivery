@@ -1,18 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from phonenumber_field.modelfields import PhoneNumberField
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    first_name = models.CharField(max_length=80, blank=True)
-    last_name = models.CharField(max_length=80, blank=True)
-    phonenumber = PhoneNumberField(null = False, blank = False)
-    
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-
-    def __str__(self):
-        return f'{self.user.username} profile'
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)

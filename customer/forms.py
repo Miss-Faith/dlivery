@@ -5,6 +5,7 @@ from .models import *
 from django.core.exceptions import ValidationError
 from django.forms import ClearableFileInput
 
+
 def ForbiddenUsers(value):
   forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
   'email', 'user', 'join', 'sql', 'static', 'python', 'delete']
@@ -49,8 +50,3 @@ class SignupForm(forms.ModelForm):
     if password != confirm_password:
       self._errors['password'] = self.error_class(['Passwords do not match. Try again'])
     return self.cleaned_data
-
-class UpdateProfile(forms.ModelForm):
-    class Meta:
-        model = Profile
-        exclude = ('user',)

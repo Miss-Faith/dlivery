@@ -1,6 +1,6 @@
 import json
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db.models import Q
 from django.core.mail import send_mail
@@ -8,23 +8,22 @@ from .models import *
 from .forms import *
 
 # Create your views here.
-class Index(View):
-  def get(self, request, *args, **kwargs):
+def Index(request, *args, **kwargs):
     if request.method == 'POST':
-        Signupform = SignupForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            email = form.cleaned_data.get('email')
-            password = form.cleaned_data.get('password')
+        Signupform = SignupForm(request.POST,request.FILES)
+        if Signupform.is_valid():
+            username = Signupform.cleaned_data.get('username')
+            email = Signupform.cleaned_data.get('email')
+            password = Signupform.cleaned_data.get('password')
             User.objects.create_user(username=username, email=email, password=password)
-            return redirect('login')
+            return redirect('menu')
     else:
         Signupform = SignupForm()
     return render(request, 'customer/index.html', {'Signupform': Signupform})
 
 
-class About(View):
-  def get(self, request, *args, **kwargs):
+
+def About(request, *args, **kwargs):
     return render(request,'customer/about.html')
 
 

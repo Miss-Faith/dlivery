@@ -4,8 +4,8 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
   path('account/', include('django.contrib.auth.urls')),
-  path('', Index.as_view(), name='index'),
-  path('about/', About.as_view(), name='about'),
+  path('', Index, name='index'),
+  path('about/', About, name='about'),
   path('menu/', Menu.as_view(), name='menu'),
   path('menu/search/', MenuSearch.as_view(), name='menu-search'),
   path('order/', Order.as_view(), name='order'),
