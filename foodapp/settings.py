@@ -48,13 +48,13 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'crispy_forms',
 ]
 
-SITE_ID = 1
+SITE_ID=2
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -173,7 +173,3 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ACCOUNT_ADAPTER = 'food.account_adapter.NoNewUsersAccountAdapter'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-LOGIN_REDIRECT_URL = 'index'
-LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'index'
