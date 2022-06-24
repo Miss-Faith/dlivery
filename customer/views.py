@@ -1,9 +1,11 @@
 import json
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db.models import Q
 from django.core.mail import send_mail
+from django.contrib import messages
 from .models import *
 from .forms import *
 
@@ -11,7 +13,22 @@ from .forms import *
 def Index(request, *args, **kwargs):
     if request.method == 'POST':
         Signupform = SignupForm(request.POST,request.FILES)
-        if Signupform.is_valid():
+        form = LoginForm(request.POST)
+        if request.POST.get('submit') == 'Login':
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+
+            user = authenticate(request, username=username, password=password)
+
+            if user is not None:
+                login(request,user)
+                return redirect('menu')
+            else:
+                messages.info(request, 'Wrong Username or password')
+
+            return render(request, 'customer/index.html', {'form':form})
+
+        elif Signupform.is_valid():
             username = Signupform.cleaned_data.get('username')
             email = Signupform.cleaned_data.get('email')
             password = Signupform.cleaned_data.get('password')
@@ -19,7 +36,9 @@ def Index(request, *args, **kwargs):
             return redirect('menu')
     else:
         Signupform = SignupForm()
-    return render(request, 'customer/index.html', {'Signupform': Signupform})
+        form = LoginForm
+
+    return render(request, 'customer/index.html', {'Signupform': Signupform, 'form':form})
 
 
 

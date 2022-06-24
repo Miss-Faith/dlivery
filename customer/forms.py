@@ -5,6 +5,13 @@ from .models import *
 from django.core.exceptions import ValidationError
 from django.forms import ClearableFileInput
 
+class LoginForm(forms.ModelForm):
+  username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
+  password = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+  class Meta:
+    model = User
+    fields = ('username', 'password')
 
 def ForbiddenUsers(value):
   forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
