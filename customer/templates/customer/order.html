@@ -6,68 +6,72 @@
         <div class="col-md-12 col-sm-12 p-4">
             <form method="POST">
                 {% csrf_token %}
+
                 <div class="pt-5">
-                    {% for food in food %}
                     <div class="row">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ food.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
-                                    <label class="form-check-label">{{ food.name }}</label>
+                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Food</h2>
+                        {% for food in food %}    
+                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
+                            <img class="rounded" style="float: left;" src="{{ food.image.url }}" width="150" height="100">
+                            <div style="margin-left: 5%;">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
+                                        <label class="form-check-label">{{ food.name }}</label>
+                                    </div>
+                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ food.price }}</p>
                                 </div>
-                                <p class="font-weight-bold pl-5">{{ food.price }}</p>
+                                <p style="margin-left: 34%;">  {{ food.description }}</p>
                             </div>
-                            <p>{{ food.description }}</p>
                         </div>
+                    {% endfor %}
                     </div>
-                    <hr />
-                {% endfor %}
                 </div>
+                <hr>
 
                 <div class="pt-5">
-                    {% for drink in drinks %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ drink.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
-                                    <label class="form-check-label">{{ drink.name }}</label>
+                    <div class="row">
+                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Drinks</h2>
+                        {% for drink in drinks %}
+                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
+                            <img class="rounded" style="float: left;" src="{{ food.image.url }}" width="150" height="100">
+                            <div style="margin-left: 5%;">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
+                                        <label class="form-check-label">{{ drink.name }}</label>
+                                    </div>
+                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ drink.price }}</p>
                                 </div>
-                                <p class="font-weight-bold pl-5">{{ drink.price }}</p>
+                                <p style="margin-left: 34%;">  {{ drink.description }}</p>
                             </div>
-                            <p>{{ drink.description }}</p>
                         </div>
+                        {% endfor %}
                     </div>
-                    <hr />
-                    {% endfor %}
                 </div>
+                <hr>
 
                 <div class="pt-5">
-                    {% for grocery in groceries %}
-                    <div class="row mt-4">
-                        <div class="col-md-2 col-sm-12">
-                            <img class="rounded" src="{{ grocery.image.url }}" width="150" height="100"/>
-                        </div>
-                        <div class="col-md-8 col-sm-12">
-                            <div class="d-flex flex-row">
-                                <div class="form-group form-check">
-                                    <input type="checkbox" name="items[]" class="form-check-input" value="{{ grocery.pk }}">
-                                    <label class="form-check-label">{{ grocery.name }}</label>
+                    <div class="row">
+                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Groceries</h2>
+                        {% for grocery in groceries %}
+                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
+                            <img class="rounded" style="float: left;" src="{{ food.image.url }}" width="150" height="100">
+                            <div style="margin-left: 5%;">
+                                <div class="d-flex flex-row">
+                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
+                                        <label class="form-check-label">{{ grocery.name }}</label>
+                                    </div>
+                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ grocery.price }}</p>
                                 </div>
-                                <p class="font-weight-bold pl-5">{{ grocery.price }}</p>
+                                <p style="margin-left: 34%;">  {{ grocery.description }}</p>
                             </div>
-                            <p>{{ grocery.description }}</p>
                         </div>
+                        {% endfor %}
                     </div>
-                    <hr />
-                    {% endfor %}
                 </div>
+                <hr>
 
                 <div class="form-group pt-3">
                     <label for="name">Full Name</label>

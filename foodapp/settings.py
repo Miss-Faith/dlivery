@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -28,6 +32,11 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+cloudinary.config( 
+  cloud_name = "dlrnjcn1a", 
+  api_key = "968178658477246", 
+  api_secret = "AgXPLg-tkuLFq6YxH6I_n66_S64" 
+)
 
 # Application definition
 AUTHENTICATION_BACKENDS = [
@@ -52,6 +61,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'crispy_forms',
+    'cloudinary',
 ]
 
 SITE_ID=2
@@ -177,4 +187,4 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 LOGIN_REDIRECT_URL = 'menu'
 LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'login'
+LOGIN_URL = 'lindex'

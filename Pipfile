@@ -12,6 +12,7 @@ django-allauth = "*"
 django-registration = "*"
 django-phonenumber-field = "*"
 django-phonenumbers = "*"
+cloudinary = "*"
 
 [dev-packages]
 

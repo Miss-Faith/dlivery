@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import ValidationError
 from django.forms import ClearableFileInput
+from cloudinary.models import CloudinaryField
 
 class LoginForm(forms.ModelForm):
   username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
