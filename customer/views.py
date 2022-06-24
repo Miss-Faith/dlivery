@@ -51,7 +51,7 @@ class Order(View):
         # get every item from each category
         food = MenuItem.objects.filter(category__name__contains='Food')
         drinks = MenuItem.objects.filter(category__name__contains='Drink')
-        groceries = MenuItem.objects.filter(category__name__contains='Grocery')
+        groceries = MenuItem.objects.filter(category__name__contains='Grocer')
        
         # pass into context
         context = {

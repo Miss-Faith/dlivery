@@ -13,6 +13,9 @@ django-registration = "*"
 django-phonenumber-field = "*"
 django-phonenumbers = "*"
 cloudinary = "*"
+whitenoise = "*"
+python-decouple = "*"
+gunicorn = "*"
 
 [dev-packages]
 
