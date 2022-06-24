@@ -16,14 +16,14 @@ body {
   background-color: rgba(28,25,20,0.8);
 }
 
-a, a:link, a:visited { color: #e47100; font-weight: bold; text-decoration: none; }
-a:hover { color: #CCCC00; text-decoration: underline; }
+a, a:link, a:visited { color: rgba(28,25,20,0.8); font-weight: bold; text-decoration: none; }
+a:hover { color: #e47100; text-decoration: underline; }
 
 p { margin: 0 0 10px 0; padding: 0; }
 img { border: none; }
 em { color: #d8b98f; font-weight: bold; font-style: normal }
 
-h1, h2, h3, h4, h5, h6 { color: #e47100; font-weight: normal; }
+h1, h2, h3, h4, h5, h6 { color: rgba(28,25,20,0.8); font-weight: normal; }
 h1 { font-size: 28px; margin: 0 0 20px 0; padding: 5px 0 }
 h2 { display: block; height: 40px; font-size: 25px; margin: 0; padding: 15px 0 20px 10px; background: url(images/templatemo_h2.png) no-repeat top left  }
 h3 { font-size: 22px; margin: 0 0 15px; padding: 0; }
