@@ -18,7 +18,7 @@
           <div class="carousel-item active">
             <img class="d-block w-100" src="{% static '/images/food/food7.jpg' %}" alt="First slide">
             <div class="carousel-caption d-none d-md-block rounded" style="background-color: rgba(1,1,1,0.4);">
-              <h2>Hungry?</h2>
+              <h2 style="margin-top: -4%;">Hungry?</h2>
               <p>Order your favourite food. Have it delivered at your doorstep</p>
             </div>
           </div>
@@ -70,25 +70,26 @@
     </div>
 
     {% if user.is_authenticated %} 
-    <div class="col-lg-7 col-md-12 col-sm-12 mx-auto">
-      <div class="card d-flex justify-content-center">
+    <div class="col-lg-4 col-md-12 col-sm-12 mx-auto">
+      <div class="card d-flex justify-content-center" style="margin-top: 50%;">
         <div class="text-center">
           <h1>Food App</h1>
-          <a href="{% url 'order' %}" class="btn btn-outline-primary">Order Now!</a>
+          <a href="{% url 'order' %}" class="btn btn-outline-warning">Order Now!</a>
         </div>
       </div>
     </div>
 
     {% else %}
     <div class="col-lg-4 col-md-12 col-sm-12">
-      <div class="card text-center d-flex align-items-middle" style="margin-top: 18%;">
+      <div class="card text-center d-flex align-items-middle" style="margin-top: 14.6%;">
         <br>
         <h2>Sign In</h2>
+        <br>
         <div class="container">
           <form method="POST",name="Login",value="Login">
             {% csrf_token %}
             {{form| crispy}}
-            <input class="btn btn-outline-success btn-sm" type="submit" name="submit" value="Login">
+            <input class="btn btn-outline-warning btn-sm" type="submit" name="submit" value="Login">
             {% for message in messages %}
             <p id="messages">{{message}}</p>
             {% endfor %}
@@ -97,7 +98,7 @@
         <hr>
         <div>
           <p>Don't have an account? </p>
-          <button class="text-center btn btn-outline-success btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sign Up</button>
+          <button class="text-center btn btn-outline-warning btn-sm" data-toggle="modal" data-target=".bd-example-modal-xl">Sign Up</button>
         </div>
         <br>
       </div>
@@ -119,7 +120,7 @@
             <form action="" method="post" enctype="multipart/form-data" role="form">
               {% csrf_token %}
               {{ Signupform|crispy }}
-              <button style="margin-left: 45%;" type="submit" name="action" class="btn btn-sm btn-success">Log In</button>
+              <button style="margin-left: 45%;" type="submit" name="action" class="btn btn-sm btn-warning">Log In</button>
             </form>
             <br>
             </h4>
