@@ -10,8 +10,11 @@ body {
 .border1 {
   border-color: rgba(28,25,20,0.8);
   border-style: solid;
-  margin: 4%;
   border-width: thin;
+}
+
+.bg-dark {
+  background-color: rgba(28,25,20,0.8);
 }
 
 .navbar {
@@ -42,14 +45,12 @@ a.more { clear: both; display: block; width: 60px; height: 20px; text-align: cen
 a.more:hover { text-decoration: none; color: #000; }
 
 
-
 #templamteo_body_wrapper {
 	width: 100%;
-	background: url('/static/images/imagefront.jpg') top center no-repeat
-	
+	background: url('/static/images/imagefront.jpg') top center repeat
 }
 
 #templatemo_wrapper {
 	margin: 0 auto;
-	background: url('/static/images/templatemo_wrapper.jpg') top center no-repeat	
+	background: url('/static/images/templatemo_wrapper.jpg') top center repeat	
 }

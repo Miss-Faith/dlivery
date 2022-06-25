@@ -1,142 +1,175 @@
 {% extends 'customer/base.html' %}
-
+{% load static %}
 {% block content %}
-<div class="container mb-5">
-    <div class="row justify-content-center mt-1">
-        <div class="col-md-12 col-sm-12 p-4">
-            <form method="POST">
-                {% csrf_token %}
+<div class="container">
+    <br><br><br>
 
-                <div class="pt-5">
-                    <div class="row">
-                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Food</h2>
-                        {% for food in food %}    
-                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
-                            <img class="rounded" style="float: left;" src="{{ food.image.url }}" width="150" height="100">
-                            <div style="margin-left: 5%;">
-                                <div class="d-flex flex-row">
-                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
-                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
-                                        <label class="form-check-label">{{ food.name }}</label>
-                                    </div>
-                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ food.price }}</p>
-                                </div>
-                                <p style="margin-left: 34%;">  {{ food.description }}</p>
-                            </div>
-                        </div>
-                    {% endfor %}
-                    </div>
+    <h1 class="text-center" style="font-weight: bold;">Place your order</h1>
+
+    <div class="row">
+        <div class="col-lg-4 col-md-10 col-sm-10" style="margin-bottom: 1rem;">
+            <div class="card">
+                <img class="rounded-pill" src="{% static '/images/food/food7.jpg' %}" alt="First slide" height="240">
+                <div class="card-img-overlay rounded text-center" style="background-color: rgba(1,1,1,0.8); height: 40%; width: 72%; margin-left: 14%; margin-top: 32%;">
+                  <h1 style="margin-top: -4%; color: #e47100;">Restaurants</h1>
                 </div>
-                <hr>
-
-                <div class="pt-5">
-                    <div class="row">
-                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Drinks</h2>
-                        {% for drink in drinks %}
-                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
-                            <img class="rounded" style="float: left;" src="{{ drink.image.url }}" width="150" height="100">
-                            <div style="margin-left: 5%;">
-                                <div class="d-flex flex-row">
-                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
-                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
-                                        <label class="form-check-label">{{ drink.name }}</label>
-                                    </div>
-                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ drink.price }}</p>
-                                </div>
-                                <p style="margin-left: 34%;">  {{ drink.description }}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <hr>
-
-                <div class="pt-5">
-                    <div class="row">
-                        <h2 class="text-center" style=" margin-bottom: 5%; font-weight: bold; color: rgba(28,25,20,0.8);">Groceries</h2>
-                        {% for grocery in groceries %}
-                        <div class="col-lg-6 col-md-6 col-sm-12 border1">
-                            <img class="rounded" style="float: left;" src="{{ grocery.image.url }}" width="150" height="100">
-                            <div style="margin-left: 5%;">
-                                <div class="d-flex flex-row">
-                                    <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
-                                        <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
-                                        <label class="form-check-label">{{ grocery.name }}</label>
-                                    </div>
-                                    <p style="margin-left: 5%; margin-top: 5%;" class="font-weight-bold pl-5" style="margin-left: 5%;">{{ grocery.price }}</p>
-                                </div>
-                                <p style="margin-left: 34%;">  {{ grocery.description }}</p>
-                            </div>
-                        </div>
-                        {% endfor %}
-                    </div>
-                </div>
-                <hr>
-
-                <div class="form-group pt-3">
-                    <label for="name">Full Name</label>
-                    <input required class="form-control" type="text" placeholder="Your Name" name="name" />
-                </div>
-
-                <div class="form-group pt-3">
-                    <label for="name">Email Address</label>
-                    <input required class="form-control" type="text" placeholder="example@company.com" name="email" />
-                </div>
-
-                <div class="form-group pt-3">
-                    <label for="name">Street Address</label>
-                    <input required class="form-control" type="text" placeholder="1234 Main St" name="street" />
-                </div>
-
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">City</label>
-                            <input required class="form-control" type="text" placeholder="San Francisco" name="city" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">State</label>
-                            <input required class="form-control" type="text" placeholder="CA" name="state" />
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group pt-3">
-                            <label for="name">Zip Code</label>
-                            <input required class="form-control" type="text" placeholder="94117" name="zip" />
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Button trigger modal -->
-                <button type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
-                  Submit Order!
-                </button>
-                <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
-
-                <!-- Modal -->
-                <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div class="modal-footer">
-                        <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
-                        <button type="submit" class="btn btn-dark">Place Order!</button>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-            </form>
+            </div>
         </div>
+        <div class="col-lg-4 col-md-10 col-sm-10" style="margin-bottom: 1rem;">
+            <div class="card">
+                <img class="d-block w-100" src="{% static '/images/groceries/vegetables (2).jpg' %}" alt="Second slide" height="240">
+                <div class="card-img-overlay rounded text-center" style="background-color: rgba(1,1,1,0.8); height: 40%; width: 72%; margin-left: 14%; margin-top: 32%;">
+                  <h1 style="margin-top: -4%; color: #e47100;">Groceries</h1>
+                </div>
+              </div>
+        </div>
+        <div class="col-lg-4 col-md-10 col-sm-10" style="margin-bottom: 1rem;">
+            <div class="card">
+                <img class="d-block w-100" src="{% static '/images/drinks/drinks3.jpg' %}" alt="Third slide" height="240">
+                <div class="card-img-overlay rounded text-center" style="background-color: rgba(1,1,1,0.8); height: 40%; width: 72%; margin-left: 14%; margin-top: 32%;">
+                  <h1 style="margin-top: -4%; color: #e47100;">Drinks</h1>
+                </div>
+              </div>
+        </div>
+    
+
     </div>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="row">
+            <hr>
+            <h2 class="text-center" style="margin-bottom: 4%; color: rgba(28,25,20,0.8);">Food</h2>
+            <hr>
+            {% for food in food %}    
+            <div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 3%; font-size: 15px;">
+                <div class="card d-flex text-white flex-row" style="background-color: rgba(28,25,20,0.5);">
+                    <img class="rounded" style="float: left;" src="{{ food.image.url }}" width="240" height="200">
+                    <div style="margin-left: 3%;">
+                        <div class="d-flex flex-row">
+                            <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
+                                <label class="form-check-label">{{ food.name }}</label>
+                            </div>
+                            <p style="margin-top: 5%; float: right;" class="font-weight-bold pl-5">Ksh. {{food.price}}</p>
+                        </div>
+                        <p> {{ food.description }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        </div>
+        <hr>
+        
+        <div class="row">
+            <h2 class="text-center" style="margin-bottom: 4%; color: rgba(28,25,20,0.8);">Drinks</h2>
+            <hr>
+            {% for drink in drinks %}
+            <div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 3%; font-size: 15px;">
+                <div class="card d-flex text-white flex-row" style="background-color: rgba(28,25,20,0.5);">
+                    <img class="rounded" style="float: left;" src="{{ drink.image.url }}" width="240" height="200">
+                    <div style="margin-left: 3%;">
+                        <div class="d-flex flex-row">
+                            <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ drink.pk }}">
+                                <label class="form-check-label">{{ drink.name }}</label>
+                            </div>
+                            <p style="margin-top: 5%; float: right;" class="font-weight-bold pl-5">Ksh. {{drink.price}}</p>
+                        </div>
+                        <p> {{ drink.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+
+        <div class="row">
+            <h2 class="text-center" style=" margin-bottom: 4%; font-weight: bold; color: rgba(28,25,20,0.8);">Groceries</h2>
+            <hr>
+            {% for grocery in groceries %}
+            <div class="col-lg-6 col-md-6 col-sm-12" style="margin-bottom: 3%; font-size: 15px;">
+                <div class="card d-flex text-white flex-row" style="background-color: rgba(28,25,20,0.5);">
+                    <img class="rounded" style="float: left;" src="{{grocery.image.url }}" width="240" height="200">
+                    <div style="margin-left: 3%;">
+                        <div class="d-flex flex-row">
+                            <div class="form-group form-check" style="margin-left: 5%; margin-top: 5%;">
+                                <input type="checkbox" name="items[]" class="form-check-input" value="{{ food.pk }}">
+                                <label class="form-check-label">{{ grocery.name }}</label>
+                            </div>
+                            <p style="margin-top: 5%; float: right;" class="font-weight-bold pl-5">Ksh. {{grocery.price}}</p>
+                        </div>
+                        <p> {{ grocery.description }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <hr>
+
+        <div class="form-group pt-3">
+            <label for="name">Full Name</label>
+            <input required class="form-control" type="text" placeholder="Your Name" name="name" />
+        </div>
+
+        <div class="form-group pt-3">
+            <label for="name">Email Address</label>
+            <input required class="form-control" type="text" placeholder="example@company.com" name="email" />
+        </div>
+
+        <div class="form-group pt-3">
+            <label for="name">Street Address</label>
+            <input required class="form-control" type="text" placeholder="1234 Main St" name="street" />
+        </div>
+
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group pt-3">
+                    <label for="name">City</label>
+                    <input required class="form-control" type="text" placeholder="San Francisco" name="city" />
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group pt-3">
+                    <label for="name">State</label>
+                    <input required class="form-control" type="text" placeholder="CA" name="state" />
+                </div>
+            </div>
+
+            <div class="col-md-4 col-sm-12">
+                <div class="form-group pt-3">
+                    <label for="name">Zip Code</label>
+                    <input required class="form-control" type="text" placeholder="94117" name="zip" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Button trigger modal -->
+        <button style="margin-left: 40%;" type="button" class="btn btn-dark" data-toggle="modal" data-target="#submitModal">
+            Submit Order!
+        </button>
+        <!-- <button class="btn btn-dark mt-5">Place Order!</button> -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="submitModal" tabindex="-1" role="dialog" aria-labelledby="submitModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="submitModalLabel">Submit Your Order!</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-dismiss="modal">Go Back</button>
+                <button type="submit" class="btn btn-dark">Place Order!</button>
+                </div>
+            </div>
+            </div>
+        </div>
+
+    </form>
+    <br><br><br>
 </div>
 {% endblock%}

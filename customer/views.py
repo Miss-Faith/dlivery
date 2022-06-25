@@ -41,7 +41,6 @@ def Index(request, *args, **kwargs):
     return render(request, 'customer/index.html', {'Signupform': Signupform, 'form':form})
 
 
-
 def About(request, *args, **kwargs):
     return render(request,'customer/about.html')
 
@@ -87,7 +86,7 @@ class Order(View):
 
             order_items['items'].append(item_data)
 
-            price = 0
+            price = 70
             item_ids = []
 
         for item in order_items['items']:
