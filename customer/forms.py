@@ -8,11 +8,11 @@ from cloudinary.models import CloudinaryField
 
 class LoginForm(forms.ModelForm):
   username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
-  password = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+  password1 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
 
   class Meta:
     model = User
-    fields = ('username', 'password')
+    fields = ('username', 'password1')
 
 def ForbiddenUsers(value):
   forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',
@@ -32,16 +32,15 @@ def UniqueUser(value):
   if User.objects.filter(username__iexact=value).exists():
     raise ValidationError('User with this username already exists.')
 
-class SignupForm(forms.ModelForm):
+class SignupForm(UserCreationForm):
   username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
   email = forms.CharField(label='',widget=forms.EmailInput(attrs={'placeholder': 'Email'}), max_length=100, required=True,)
-  password = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-  confirm_password = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), required=True)
+  password1 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+  password2 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), required=True)
 
   class Meta:
-
     model = User
-    fields = ('username', 'email', 'password')
+    fields = ('username', 'email', 'password1','password2')
 
   def __init__(self, *args, **kwargs):
     super(SignupForm, self).__init__(*args, **kwargs)

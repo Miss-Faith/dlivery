@@ -16,6 +16,8 @@ cloudinary = "*"
 whitenoise = "*"
 python-decouple = "*"
 gunicorn = "*"
+django-google-maps = "*"
+six = "*"
 
 [dev-packages]
 
