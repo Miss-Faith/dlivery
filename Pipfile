@@ -18,6 +18,7 @@ python-decouple = "*"
 gunicorn = "*"
 django-google-maps = "*"
 six = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 

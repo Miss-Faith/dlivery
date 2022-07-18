@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     # 'django.contrib.sites',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
 
     'crispy_forms',
     'cloudinary',
@@ -122,10 +123,20 @@ WSGI_APPLICATION = 'foodapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.contrib.gis.db.backends.postgis',
+        'NAME': 'gis',
+        'USER': 'okja',
+        'PASSWORD': 'okjapass',
+        'HOST': 'localhost',
     }
 }
 
@@ -184,7 +195,6 @@ ACCOUNT_ADAPTER = 'food.account_adapter.NoNewUsersAccountAdapter'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
 LOGIN_REDIRECT_URL = 'menu'
 LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'lindex'
+LOGIN_URL = 'index'
