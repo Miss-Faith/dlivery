@@ -1,10 +1,9 @@
 from django.urls import path,include
 from .views import *
-from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-  path('account/', include('django.contrib.auth.urls')),
   path('', Index, name='index'),
+  path('social-auth/', include('social_django.urls', namespace='social')),
   path('about/', About, name='about'),
   path('menu/', Menu.as_view(), name='menu'),
   path('menu/search/', MenuSearch.as_view(), name='menu-search'),

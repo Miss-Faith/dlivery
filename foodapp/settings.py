@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+from decouple import config,Csv
 
 import cloudinary
 import cloudinary.uploader
@@ -40,43 +41,45 @@ cloudinary.config(
 
 # Application definition
 AUTHENTICATION_BACKENDS = [
+    'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.sites',
+    'django.contrib.staticfiles',
+
     'food',
     'customer',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    # 'django.contrib.sites',
-    'django.contrib.staticfiles',
-    'django.contrib.gis',
+    'allauth.socialaccount.providers.google',
 
     'crispy_forms',
     'cloudinary',
+    
 ]
 
-SITE_ID=2
+SITE_ID=1
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '123',
-            'secret': '456',
-            'key': ''
-        },
+        # # For each OAuth based provider, either add a ``SocialApp``
+        # # (``socialaccount`` app) containing the required client
+        # # credentials, or list them here:
+        # 'APP': {
+        #     'client_id': '555403930383-kgec7o1m5p3c6emu81c5qn8m4s3epddp.apps.googleusercontent.com',
+        #     'secret': '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',
+        #     'key': ''
+        # },
         # These are provider-specific settings that can only be
         # listed here:
         "SCOPE": [
@@ -160,7 +163,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-GOOGLE_MAPS_API_KEY='AIzaSyBPVuL87MW4KKqXGi-CUy9_cS_2R_vXAKA'
+GOOGLE_MAPS_API_KEY= config('GOOGLE_MAPS_API_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -185,6 +190,9 @@ ACCOUNT_ADAPTER = 'food.account_adapter.NoNewUsersAccountAdapter'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL = 'menu'
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+LOGIN_REDIRECT_URL = '/auth/login/google-oauth2/'
 LOGOUT_REDIRECT_URL = 'index'
 LOGIN_URL = 'index'
+SOCIAL_AUTH_URL_NAMESPACE = 'social'

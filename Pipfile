@@ -19,6 +19,8 @@ gunicorn = "*"
 django-google-maps = "*"
 six = "*"
 psycopg2-binary = "*"
+social-auth-app-django = "*"
+pip-system-certs = "*"
 
 [dev-packages]
 

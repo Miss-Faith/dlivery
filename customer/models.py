@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from django_google_maps import fields as map_fields
 from cloudinary.models import CloudinaryField
 from phonenumber_field.modelfields import PhoneNumberField
-from django.contrib.gis.db import models
 
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
@@ -29,7 +28,7 @@ class OrderModel(models.Model):
     items = models.ManyToManyField('MenuItem', related_name='order', blank=True)
     name = models.CharField(max_length=200, blank=True)
     number = PhoneNumberField(null = True, blank = False)
-    address = models.PointField(null = True)
+    address = models.CharField(max_length=200,null = True)
     houseno = models.CharField(max_length=200, null=True)
     is_paid = models.BooleanField(default=False)
     is_shipped = models.BooleanField(default=False)
