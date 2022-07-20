@@ -11,51 +11,32 @@ from .models import *
 from .forms import *
 
 # Create your views here.
+class RegisterView(View):
+    form_class = RegisterForm
+    initial = {'key': 'value'}
+    template_name = 'users/register.html'
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class(initial=self.initial)
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for {username}')
+
+            return redirect(to='/')
+
+        return render(request, self.template_name, {'form': form})
+
 def Index(request, *args, **kwargs):
     User = get_user_model()
-    if request.method == 'POST':
-        Signupform = SignupForm(request.POST,request.FILES)
-        form = LoginForm(request.POST)
-        if request.POST.get('submit') == 'Login':
-            username = request.POST.get('username')
-            password1 = request.POST.get('password1')
 
-            user = authenticate(request, username=username, password1=password1)
-
-            if user is not None:
-                login(request,user)
-                return redirect('menu')
-            else:
-                messages.info(request, 'Wrong Username or password')
-
-            return render(request, 'customer/index.html', {'form':form})
-
-        elif Signupform.is_valid():
-            username = Signupform.cleaned_data.get('username')
-            email = Signupform.cleaned_data.get('email')
-            password = Signupform.cleaned_data.get('password')
-
-            if User.objects.filter(email__iexact=email).count() == 1:
-                user = Signupform.save(commit=False)
-                user.is_active = False
-                user.save()
-                current_site = get_current_site(request)
-                mail_subject = 'Activate your account.'
-                message = render_to_string('email_confirm.html', {
-                            'user': user,
-                            'domain': current_site.domain,
-                            'uid': urlsafe_base64_encode(force_bytes(user.pk)),
-                            'token': account_activation_token.make_token(user),
-                        })
-                to_email = Signupform.cleaned_data.get('email')
-                send_mail(mail_subject, message, 'youremail', [to_email])
-                return HttpResponse('Please confirm your email address to complete the registration')
-    
-    else:
-        Signupform = SignupForm()
-        form = LoginForm
-
-    return render(request, 'customer/index.html', {'Signupform': Signupform, 'form':form})
+    return render(request, 'customer/index.html')
 
 
 def About(request, *args, **kwargs):

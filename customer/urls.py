@@ -5,7 +5,7 @@ from .views import *
 
 urlpatterns = [
   path('', Index, name='index'),
-  url(r'^oauth/', include('social_django.urls', namespace='social')),
+  path('register/', RegisterView.as_view(), name='users-register'),
   path('about/', About, name='about'),
   path('menu/', Menu.as_view(), name='menu'),
   path('menu/search/', MenuSearch.as_view(), name='menu-search'),

@@ -32,25 +32,28 @@ def UniqueUser(value):
   if User.objects.filter(username__iexact=value).exists():
     raise ValidationError('User with this username already exists.')
 
-class SignupForm(UserCreationForm):
-  username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
-  email = forms.CharField(label='',widget=forms.EmailInput(attrs={'placeholder': 'Email'}), max_length=100, required=True,)
-  password1 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
-  password2 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password'}), required=True)
+class RegisterForm(UserCreationForm):
+  # fields we want to include and customize in our form
+  first_name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'First Name', 'class': 'form-control',}))
+  last_name = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Last Name', 'class': 'form-control',}))
+  username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control',}))
+  email = forms.EmailField(required=True, widget=forms.TextInput(attrs={'placeholder': 'Email', 'class': 'form-control',}))
+  password1 = forms.CharField(max_length=50, required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control', 'data-toggle': 'password', 'id': 'password',}))
+  password2 = forms.CharField(max_length=50, required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Confirm Password', 'class': 'form-control', 'data-toggle': 'password', 'id': 'password',}))
 
   class Meta:
-    model = User
-    fields = ('username', 'email', 'password1','password2')
+      model = User
+      fields = ['first_name', 'last_name', 'username', 'email', 'password1', 'password2']
 
   def __init__(self, *args, **kwargs):
-    super(SignupForm, self).__init__(*args, **kwargs)
+    super(RegisterForm, self).__init__(*args, **kwargs)
     self.fields['username'].validators.append(ForbiddenUsers)
     self.fields['username'].validators.append(InvalidUser)
     self.fields['username'].validators.append(UniqueUser)
     self.fields['email'].validators.append(UniqueEmail)
 
   def clean(self):
-    super(SignupForm, self).clean()
+    super(RegisterForm, self).clean()
     password = self.cleaned_data.get('password')
     confirm_password = self.cleaned_data.get('confirm_password')
 
