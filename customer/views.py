@@ -1,16 +1,31 @@
 import json
 from django.contrib.auth import authenticate, login, get_user_model
 from django.core.mail import send_mail
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views import View
 from django.db.models import Q
-from django.core.mail import send_mail
 from django.contrib import messages
 from .models import *
 from .forms import *
 
 # Create your views here.
+class CustomLoginView(LoginView):
+    form_class = LoginForm
+
+    def form_valid(self, form):
+        remember_me = form.cleaned_data.get('remember_me')
+
+        if not remember_me:
+            # set session expiry to 0 seconds. So it will automatically close the session after the browser is closed.
+            self.request.session.set_expiry(0)
+
+            # Set session as modified to force data updates/cookie to be saved.
+            self.request.session.modified = True
+
+        # else browser session will be as long as the session cookie time "SESSION_COOKIE_AGE" defined in settings.py
+        return super(CustomLoginView, self).form_valid(form)
+
 class RegisterView(View):
     form_class = RegisterForm
     initial = {'key': 'value'}

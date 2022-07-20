@@ -147,3 +147,7 @@ MEDIA_ROOT = (
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 30
+
+LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = 'login'

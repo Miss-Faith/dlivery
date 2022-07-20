@@ -1,18 +1,19 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm 
 from django.contrib.auth.models import User
 from .models import *
 from django.core.exceptions import ValidationError
 from django.forms import ClearableFileInput
 from cloudinary.models import CloudinaryField
 
-class LoginForm(forms.ModelForm):
-  username = forms.CharField(label='',widget=forms.TextInput(attrs={'placeholder': 'Username'}), max_length=30, required=True,)
-  password1 = forms.CharField(label='',widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+class LoginForm(AuthenticationForm):
+    username = forms.CharField(max_length=100, required=True, widget=forms.TextInput(attrs={'placeholder': 'Username', 'class': 'form-control',}))
+    password = forms.CharField(max_length=50, required=True, widget=forms.PasswordInput(attrs={'placeholder': 'Password', 'class': 'form-control', 'data-toggle': 'password', 'id': 'password', 'name': 'password',}))
+    remember_me = forms.BooleanField(required=False)
 
-  class Meta:
-    model = User
-    fields = ('username', 'password1')
+    class Meta:
+        model = User
+        fields = ['username', 'password', 'remember_me']
 
 def ForbiddenUsers(value):
   forbidden_users = ['admin', 'css', 'js', 'authenticate', 'login', 'logout', 'administrator', 'root',

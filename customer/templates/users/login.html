@@ -3,29 +3,100 @@
 {% block content %}
 <div id="banner" class="banner full-screen-mode parallax">
   <div class="container pr">
-      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-          <div class="banner-static">
-              <div class="banner-text">
-                  <div class="banner-cell">
-                      <h1>Order <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Food:Drinks:Groceries" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
-                      <h2>Accidental appearances </h2>
-                      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod</p>
-                      <div class="book-btn">
-                          <a href="#reservation" class="table-btn hvr-underline-from-center">Book my Table</a>
-                      </div>
-                      <a href="#about">
-                          <div class="mouse"></div>
-                      </a>
-                  </div>
-                  <!-- end banner-cell -->
-              </div>
-              <!-- end banner-text -->
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="banner-static">
+        <div class="banner-text">
+          <div class="banner-cell">
+            <h1>Order <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Food:Drinks:Groceries" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+            <h2>Accidental appearances </h2>
+            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod</p>
+            <div class="book-btn">
+              <a href="#reservation" class="table-btn hvr-underline-from-center">Book my Table</a>
+            </div>
+            <a href="#about">
+              <div class="mouse"></div>
+            </a>
           </div>
-          <!-- end banner-static -->
+        </div>
       </div>
-      <!-- end col -->
+    </div>
   </div>
-  <!-- end container -->
 </div>
-<!-- end banner -->
+
+<div class="form-content my-3 p-3">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5">
+        <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
+          <div class="card-header justify-content-center">
+            <h3 class="font-weight-light my-1 text-center">Sign In</h3>
+          </div>
+          {% if form.errors %}
+          <div class="alert alert-danger alert-dismissible" role="alert">
+            <div id="form_errors">
+              {% for key, value in form.errors.items %}
+                <strong>{{ value }}</strong>
+              {% endfor %}
+            </div>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          {% endif %}
+          <div class="card-body">
+            <form method="POST">
+              {% csrf_token %}
+              <div class="form-row">
+                <div class="col-md-10 offset-md-1">
+                  <div class="form-group">
+                    <a href="#"
+                      class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
+                    <a href="#"
+                      class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
+                    <hr>
+                    <p class="text-center"><strong>OR</strong></p>
+                    <hr>
+                    <label class="small mb-1">Username</label>
+                    {{ form.username }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-10 offset-md-1">
+                  <div class="form-group">
+                    <label class="small mb-1">Password</label>
+                    {{ form.password }}
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-10 offset-md-1">
+                  <div class="form-group">
+                    <!-- Add a Remember me functionality -->
+                    {{ form.remember_me }}
+                    <label> Remember me</label>
+                  </div>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col-md-10 offset-md-1">
+                  <div class="form-group mt-0 mb-1">
+                    <button name="login" class="col-md-12 btn btn-dark" id="login">Sign in</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div class="card-footer text-center">
+            <div class="small">
+              <a href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
+              <a href="#"><i>Forgot Password?</i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
