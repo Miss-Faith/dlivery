@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-48#8gm42$&ivfb5qtm*0li7o078j#25*&*wedurmus2imavsi3'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -39,12 +39,6 @@ cloudinary.config(
   api_secret = "AgXPLg-tkuLFq6YxH6I_n66_S64" 
 )
 
-# Application definition
-AUTHENTICATION_BACKENDS = [
-    'social_core.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-    'allauth.account.auth_backends.AuthenticationBackend',
-]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -52,45 +46,16 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.sites',
     'django.contrib.staticfiles',
 
     'food',
     'customer',
 
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
-
     'crispy_forms',
     'cloudinary',
-    
+   
 ]
 
-SITE_ID=1
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # # For each OAuth based provider, either add a ``SocialApp``
-        # # (``socialaccount`` app) containing the required client
-        # # credentials, or list them here:
-        # 'APP': {
-        #     'client_id': '555403930383-kgec7o1m5p3c6emu81c5qn8m4s3epddp.apps.googleusercontent.com',
-        #     'secret': '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',
-        #     'key': ''
-        # },
-        # These are provider-specific settings that can only be
-        # listed here:
-        "SCOPE": [
-            "profile",
-            "email",
-        ],
-        "AUTH_PARAMS": {
-            "access_type": "online",
-        }
-    }
-}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -163,9 +128,6 @@ USE_I18N = True
 
 USE_TZ = True
 
-GOOGLE_MAPS_API_KEY= config('GOOGLE_MAPS_API_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = config('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = config('SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
@@ -183,16 +145,5 @@ MEDIA_ROOT = (
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
-ACCOUNT_ADAPTER = 'food.account_adapter.NoNewUsersAccountAdapter'
-
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-
-SOCIAL_AUTH_URL_NAMESPACE = 'social'
-LOGIN_REDIRECT_URL = '/auth/login/google-oauth2/'
-LOGOUT_REDIRECT_URL = 'index'
-LOGIN_URL = 'index'
-SOCIAL_AUTH_URL_NAMESPACE = 'social'

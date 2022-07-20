@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_google_maps import fields as map_fields
 from cloudinary.models import CloudinaryField
 from phonenumber_field.modelfields import PhoneNumberField
 
