@@ -1,4 +1,4 @@
-{% extends 'customer/base.html' %}
+{% extends 'users/base.html' %}
 
 {% block content %}
 <div id="banner" class="banner full-screen-mode parallax">
@@ -7,11 +7,13 @@
       <div class="banner-static">
         <div class="banner-text">
           <div class="banner-cell">
-            <h1>Order <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Food:Drinks:Groceries" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
-            <h2>Accidental appearances </h2>
-            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diem nonummy nibh euismod</p>
+            <h1>Order <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="Tasty Food:Refreshing Drinks:Fresh Groceries" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span></h1>
+            <hr>
+            <h5 class="text-white">Get <span class="typer" id="some-id" data-delay="200" data-delim=":" data-words="tasty food:refreshing drinks:fresh groceries" data-colors="red"></span><span class="cursor" data-cursorDisplay="_" data-owner="some-id"></span>at your doorstep</h5>
+            <p>Order Now...</p>
             <div class="book-btn">
-              <a href="#reservation" class="table-btn hvr-underline-from-center">Book my Table</a>
+
+              <button type="button" data-bs-toggle="modal" data-bs-target="#LogInModal" class="btn btn-warning table-btn hvr-underline-from-center">Log In</button>
             </div>
             <a href="#about">
               <div class="mouse"></div>
@@ -23,13 +25,13 @@
   </div>
 </div>
 
-<div class="form-content my-3 p-3">
-  <div class="container">
-    <div class="row justify-content-center">
-      <div class="col-lg-5">
+<div class="form-content my-3 p-3 modal fade" id="LogInModal" tabindex="-1" aria-labelledby="LogInModalLabel" aria-hidden="true">
+  <div class="container modal-dialog">
+    <div class="row justify-content-center modal-content">
+      <div class="col">
         <div class="card shadow-lg border-0 rounded-lg mt-0 mb-3">
-          <div class="card-header justify-content-center">
-            <h3 class="font-weight-light my-1 text-center">Sign In</h3>
+          <div class="card-header justify-content-center modal-header">
+            <h3 class="font-weight-light my-1 text-center modal-title" id="LogInModalLabel">Sign In</h3>
           </div>
           {% if form.errors %}
           <div class="alert alert-danger alert-dismissible" role="alert">
@@ -43,28 +45,15 @@
             </button>
           </div>
           {% endif %}
-          <div class="card-body">
+          <div class="card-body modal-body">
             <form method="POST">
               {% csrf_token %}
               <div class="form-row">
                 <div class="col-md-10 offset-md-1">
                   <div class="form-group">
-                    <a href="#"
-                      class="btn btn-link btn-lg active btn-block">Sign in with GitHub</a>
-                    <a href="#"
-                      class="btn btn-link btn-lg active btn-block">Sign in with Google</a>
-                    <hr>
-                    <p class="text-center"><strong>OR</strong></p>
-                    <hr>
-                    <label class="small mb-1">Username</label>
                     {{ form.username }}
                   </div>
-                </div>
-              </div>
-              <div class="form-row">
-                <div class="col-md-10 offset-md-1">
                   <div class="form-group">
-                    <label class="small mb-1">Password</label>
                     {{ form.password }}
                   </div>
                 </div>
@@ -85,12 +74,26 @@
                   </div>
                 </div>
               </div>
+              <div class="form-row">
+                <div class="col-md-10 offset-md-1">
+                  <div class="form-group mt-0 mb-1">
+                    <hr>
+                    <p class="text-center"><strong>OR</strong></p>
+                    <hr>
+                    <a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-link btn-lg active btn-block">Sign in with Google</a> 
+                  </div>
+                </div>
+              </div>
             </form>
           </div>
           <div class="card-footer text-center">
             <div class="small">
-              <a href="{% url 'users-register' %}">Don't have an account yet? Go to signup</a><br>
+              <p style="display: inline;">Don't have an account yet?</p>
+              <a href="{% url 'users-register' %}">Go to signup</a><br>
               <a href="#"><i>Forgot Password?</i></a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
         </div>
