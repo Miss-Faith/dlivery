@@ -3,6 +3,15 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from phonenumber_field.modelfields import PhoneNumberField
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    avatar = models.ImageField(default='default.jpg', upload_to='profile_images')
+    bio = models.TextField()
+
+    def __str__(self):
+        return self.user.username
+        
 class MenuItem(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()

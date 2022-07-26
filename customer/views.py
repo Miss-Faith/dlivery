@@ -3,11 +3,30 @@ from django.contrib.auth import authenticate, login, get_user_model
 from django.core.mail import send_mail
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from django.views import View
 from django.db.models import Q
 from django.contrib import messages
 from .models import *
 from .forms import *
+
+from django.urls import reverse_lazy
+from django.contrib.auth.views import PasswordResetView
+from django.contrib.messages.views import SuccessMessageMixin
+
+@login_required
+def profile(request):
+    return render(request, 'users/profile.html')
+    
+class ResetPasswordView(SuccessMessageMixin, PasswordResetView):
+    template_name = 'users/password_reset.html'
+    email_template_name = 'users/password_reset_email.html'
+    subject_template_name = 'users/password_reset_subject.txt'
+    success_message = "We've emailed you instructions for setting your password, " \
+                      "if an account exists with the email you entered. You should receive them shortly." \
+                      " If you don't receive an email, " \
+                      "please make sure you've entered the address you registered with, and check your spam folder."
+    success_url = reverse_lazy('login')
 
 # Create your views here.
 class CustomLoginView(LoginView):
