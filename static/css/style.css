@@ -631,8 +631,26 @@ html, body{ height: 100%; }
 	color:#fff;
 	font-size: 18px;
 }
+
+.title-caption_1 {
+    letter-spacing: 0.16px;
+    padding: 20px 120px;
+	font-size: 18px;
+    color: white;
+}
+
+.btn {
+    background-color: #e75b1e!important;
+}
 .color-white {
     color: #fff;
+}
+
+#restaurants a{
+    width: 92%;
+    color: #fff;
+    text-align: left;
+    margin-bottom: 2%;
 }
 
 #owl-demo .item{
@@ -753,14 +771,14 @@ html, body{ height: 100%; }
 
 
 .menu-main .title-caption{
-	color:#666;
+	color:#667;
 }
 .tab-title-menu {
 	text-align:center;
 }
 
 .tab-title-menu h2{
-	border-bottom:1px solid #666;
+	border-bottom:1px solid #667;
 	display: inline-block;
 	padding-top: 10px;
 }
@@ -771,6 +789,11 @@ html, body{ height: 100%; }
 }
 .tab-title-menu p {
 	color:#000;
+}
+
+.rest-title {
+	display: inline-block;
+	padding-top: 10px;
 }
 
 .tab-menu{
@@ -989,7 +1012,7 @@ html, body{ height: 100%; }
 -------------------------------------------------------------------*/
 
 .gallery-main .title-caption{
-	color: #666;
+	color: #667;
 }
 
 /* new gallery */
@@ -1253,7 +1276,7 @@ html, body{ height: 100%; }
 .pricing-main p{
 	letter-spacing: 0.16px;
 	padding: 20px 120px;
-	color: #666;
+	color: #667;
 	font-size: 18px;
 	text-align:center;
 }
@@ -1715,7 +1738,7 @@ textarea:focus, input:focus, select:focus, .bootstrap-select .dropdown-toggle:fo
 	margin:0px;
 }
 .footer-box-d ul li span{
-	color: #666;
+	color: #667;
 }
 
 /*------------------------------------------------------------------

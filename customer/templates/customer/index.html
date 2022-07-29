@@ -13,12 +13,12 @@
         <div class="special-box">
           <div id="owl-demo">
             <div class="item item-type-zoom">
-                <a href="#" class="item-hover">
+                <a href="id_food" class="item-hover">
                     <div class="item-info">
                         <div class="headline">
-                            SALMON STEAK
+                            Food
                             <div class="line"></div>
-                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                            <div class="dit-line">Order tasty dishes from your favourite restaurant.</div>
                         </div>
                     </div>
                 </a>
@@ -27,12 +27,12 @@
                 </div>
             </div>
             <div class="item item-type-zoom">
-                <a href="#" class="item-hover">
+                <a href="id_drinks" class="item-hover">
                     <div class="item-info">
                         <div class="headline">
-                            ITALIAN PIZZA
+                            Drinks
                             <div class="line"></div>
-                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                            <div class="dit-line">Need a drink? We have you sorted with a range of refreshing drinks.</div>
                         </div>
                     </div>
                 </a>
@@ -41,12 +41,12 @@
                 </div>
             </div>
             <div class="item item-type-zoom">
-                <a href="#" class="item-hover">
+                <a href="id_groceries" class="item-hover">
                     <div class="item-info">
                         <div class="headline">
-                            VEG. ROLL
+                            Groceries
                             <div class="line"></div>
-                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                            <div class="dit-line">Get fresh groceries at the best prices</div>
                         </div>
                     </div>
                 </a>
@@ -55,12 +55,12 @@
                 </div>
             </div>
             <div class="item item-type-zoom">
-                <a href="#" class="item-hover">
+                <a href="id_utilities" class="item-hover">
                     <div class="item-info">
                         <div class="headline">
-                            SALMON STEAK
+                            Utilities
                             <div class="line"></div>
-                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                            <div class="dit-line">Out of gas? We'll deliver... place the order</div>
                         </div>
                     </div>
                 </a>
@@ -69,12 +69,12 @@
                 </div>
             </div>
             <div class="item item-type-zoom">
-                <a href="#" class="item-hover">
+                <a href="id_food" class="item-hover">
                     <div class="item-info">
                         <div class="headline">
-                            VEG. ROLL
+                            Food
                             <div class="line"></div>
-                            <div class="dit-line">Lorem ipsum dolor sit amet, consectetur adip aliqua. Ut enim ad minim venia.</div>
+                            <div class="dit-line">Order tasty dishes from your favourite restaurant.</div>
                         </div>
                     </div>
                 </a>
@@ -94,14 +94,49 @@
 </div>
 <!-- end special-menu -->
 
+<div class="pad-top-70">
+    <h2 class="block-title text-center"> Restaurants </h2>
+    <p class="title-caption_1 text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+  
+    <div id="restaurants" class="title-caption_1">
+      <div class="row mx-auto color-white">
+      {% for rest in restaurants %}
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <h2> <i class="flaticon-dinner"></i> {{rest.name}} </h2>
+        </div>
+      {% endfor %}
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <a class="btn" type="button"> <i class="flaticon-dinner"></i> <span class="rest-title">Taliban</span> </a>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12">
+          <a class="btn" type="button"> <i class="flaticon-dinner"></i> <span class="rest-title">Taliban</span> </a>
+        </div> 
+      </div>
+      <!-- end restaurant list -->
+    </div>
+</div>
+
+<h2 class="pad-top-100 block-title text-center">
+  Drinks	
+</h2>
+
+<h2 class="pad-top-100 block-title text-center">
+  Groceries	
+</h2>
+
+<h2 class="pad-top-100 block-title text-center">
+  Utilities	
+</h2>
+
+
 <div id="menu" class="menu-main pad-top-100 pad-bottom-100">
   <div class="container">
       <div class="row">
           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
               <div class="wow fadeIn" data-wow-duration="1s" data-wow-delay="0.1s">
                   <h2 class="block-title text-center">
-      Our Menu 	
-    </h2>
+                    Our Menu 	
+                  </h2>
                   <p class="title-caption text-center">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. </p>
               </div>
               <div class="tab-menu">
